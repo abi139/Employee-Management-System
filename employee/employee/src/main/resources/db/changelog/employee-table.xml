@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  
+
+    <changeSet id="1" author="employee_info">
+        <createTable tableName="employee">
+            <column name="id" type="SERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="position" type="VARCHAR(255)">
+                <constraints nullable="false"/>  
+            </column>
+            <column name="salary" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="address_info">
+    <createTable tableName="address_table">
+        <column name="id" type="SERIAL">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="address_line1" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="city" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="state" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="pincode" type="VARCHAR(20)">
+            <constraints nullable="false"/>
+        </column>
+       <column name="emp_id" type="INTEGER">
+    <constraints foreignKeyName="fk_employee" references="employee(id)"/>
+</column>
+    </createTable>
+</changeSet>
+
+</databaseChangeLog>
